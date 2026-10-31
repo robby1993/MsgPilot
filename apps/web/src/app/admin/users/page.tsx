@@ -20,7 +20,8 @@ import {
   Check,
   Zap,
   Smartphone,
-  MessageSquare
+  MessageSquare,
+  Mail
 } from 'lucide-react';
 
 export default function AdminUsersPage() {
@@ -34,6 +35,7 @@ export default function AdminUsersPage() {
   const [allowWebBaileys, setAllowWebBaileys] = useState(true);
   const [allowWaba, setAllowWaba] = useState(true);
   const [allowRcs, setAllowRcs] = useState(true);
+  const [allowMail, setAllowMail] = useState(true);
   const [savingChannels, setSavingChannels] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -69,6 +71,7 @@ export default function AdminUsersPage() {
     setAllowWebBaileys(user.allowWebBaileys !== false);
     setAllowWaba(user.allowWaba !== false);
     setAllowRcs(user.allowRcs !== false);
+    setAllowMail(user.allowMail !== false);
   };
 
   const handleSaveChannels = async () => {
@@ -80,6 +83,7 @@ export default function AdminUsersPage() {
         allowWebBaileys,
         allowWaba,
         allowRcs,
+        allowMail,
       });
 
       if (res.data?.status) {
@@ -218,6 +222,24 @@ export default function AdminUsersPage() {
                 />
               </label>
 
+              <label className="flex items-center justify-between p-3.5 border rounded-xl hover:bg-amber-50/50 cursor-pointer">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-amber-100 text-amber-700 rounded-lg">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">Mail Listing</p>
+                    <p className="text-[11px] text-gray-500">Enable lists, subscribers, and campaigns</p>
+                  </div>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={allowMail}
+                  onChange={(e) => setAllowMail(e.target.checked)}
+                  className="w-5 h-5 accent-amber-600 rounded"
+                />
+              </label>
+
               <label className="flex items-center justify-between p-3.5 border rounded-xl hover:bg-indigo-50/50 cursor-pointer">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-indigo-100 text-indigo-700 rounded-lg">
@@ -311,6 +333,11 @@ export default function AdminUsersPage() {
                           u.allowRcs !== false ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-gray-100 text-gray-400 line-through'
                         }`}>
                           RCS
+                        </span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                          u.allowMail !== false ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-gray-100 text-gray-400 line-through'
+                        }`}>
+                          Mail
                         </span>
                       </div>
                     </td>

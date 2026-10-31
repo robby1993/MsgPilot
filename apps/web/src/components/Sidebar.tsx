@@ -24,7 +24,9 @@ import {
   Database,
   Key,
   X,
-  MessageSquare
+  MessageSquare,
+  Mail,
+  List
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 
@@ -70,6 +72,14 @@ const Sidebar = ({ isOpenMobile = false, onCloseMobile }: SidebarProps) => {
     { name: 'Flow Builder', path: '/rcs/flow-builder', icon: GitFork },
   ];
 
+  const mailItems = [
+    { name: 'Dashboard', path: '/mail', icon: LayoutDashboard },
+    { name: 'Lists', path: '/mail/lists', icon: List },
+    { name: 'Subscribers', path: '/mail/subscribers', icon: Users },
+    { name: 'Templates', path: '/mail/templates', icon: FileText },
+    { name: 'Campaigns', path: '/mail/campaigns', icon: Mail },
+  ];
+
   const adminItems = [
     { name: 'Admin Dashboard', path: '/admin', icon: LayoutDashboard },
     { name: 'User Management', path: '/admin/users', icon: Users },
@@ -81,6 +91,7 @@ const Sidebar = ({ isOpenMobile = false, onCloseMobile }: SidebarProps) => {
   const showWebBaileys = user?.allowWebBaileys !== false;
   const showWaba = user?.allowWaba !== false;
   const showRcs = user?.allowRcs !== false;
+  const showMail = user?.allowMail !== false;
 
   return (
     <>
@@ -195,6 +206,36 @@ const Sidebar = ({ isOpenMobile = false, onCloseMobile }: SidebarProps) => {
                       className={`flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                         isActive
                           ? 'bg-indigo-600 text-white shadow'
+                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      }`}
+                    >
+                      <Icon size={18} />
+                      <span>{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {showMail && (
+            <div>
+              <div className="px-3 mb-2 flex items-center justify-between text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                <span>Mail Listing</span>
+                <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+              </div>
+              <div className="space-y-1">
+                {mailItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = pathname === item.path;
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      onClick={onCloseMobile}
+                      className={`flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                        isActive
+                          ? 'bg-amber-600 text-white shadow'
                           : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                       }`}
                     >

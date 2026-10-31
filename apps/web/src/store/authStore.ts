@@ -12,6 +12,7 @@ interface User {
   allowWebBaileys?: boolean;
   allowWaba?: boolean;
   allowRcs?: boolean;
+  allowMail?: boolean;
 }
 
 interface AuthState {

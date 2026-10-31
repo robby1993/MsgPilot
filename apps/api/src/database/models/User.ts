@@ -79,6 +79,12 @@ export class User extends Model<User> {
   allowRcs: boolean;
 
   @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+  })
+  allowMail: boolean;
+
+  @Column({
     type: DataType.STRING,
     allowNull: true,
   })

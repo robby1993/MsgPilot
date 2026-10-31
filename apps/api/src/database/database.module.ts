@@ -22,6 +22,12 @@ import { RcsTemplate } from './models/RcsTemplate';
 import { RcsCampaign } from './models/RcsCampaign';
 import { RcsAutomation } from './models/RcsAutomation';
 import { RcsFlow } from './models/RcsFlow';
+import { MailList } from './models/MailList';
+import { MailSubscriber } from './models/MailSubscriber';
+import { MailListSubscriber } from './models/MailListSubscriber';
+import { MailTemplate } from './models/MailTemplate';
+import { MailCampaign } from './models/MailCampaign';
+import { MailDelivery } from './models/MailDelivery';
 import { ContactName } from './models/ContactName';
 
 function postgresSsl(dbUrl: string): false | { rejectUnauthorized: false } {
@@ -80,6 +86,12 @@ function postgresSsl(dbUrl: string): false | { rejectUnauthorized: false } {
             RcsCampaign,
             RcsAutomation,
             RcsFlow,
+            MailList,
+            MailSubscriber,
+            MailListSubscriber,
+            MailTemplate,
+            MailCampaign,
+            MailDelivery,
             ContactName,
           ],
           autoLoadModels: true,
@@ -125,6 +137,12 @@ function postgresSsl(dbUrl: string): false | { rejectUnauthorized: false } {
       RcsCampaign,
       RcsAutomation,
       RcsFlow,
+      MailList,
+      MailSubscriber,
+      MailListSubscriber,
+      MailTemplate,
+      MailCampaign,
+      MailDelivery,
       ContactName,
     ]),
   ],
